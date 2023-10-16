@@ -1,4 +1,5 @@
-import { Square , TURNS} from "./"
+import { Square} from "./"
+import { TURNS } from "../logic";
 
 
 export const TurnComponent = ({turn}) => {
