@@ -6,6 +6,7 @@ import {
   TURNS,
   TurnComponent,
   WinnerMessage,
+  checkEndGame,
 } from "./components";
 
 function App() {
@@ -21,26 +22,36 @@ function App() {
     const newTurn = turn === TURNS.x ? TURNS.o : TURNS.x;
     setTurn(newTurn);
     const newWinner = checkWinner(newBoard);
+    console.log(newWinner);
     if (newWinner) {
       setWinner(newWinner);
+    } else if (checkEndGame(newBoard)) {
+      setWinner(false);
     }
+  };
+
+  const resetGame = () => {
+    setBoard(Array(9).fill(null));
+    setTurn(TURNS.x);
+    setWinner(null);
   };
 
   return (
     <>
       <main className="board">
         <h1>TicTacToe</h1>
+        <button onClick={resetGame}>Restart</button>
         <section className="game">
-          {board.map((_, index) => {
+          {board.map((square, index) => {
             return (
               <Square key={index} index={index} updateBoard={updateBoard}>
-                {board[index]}
+                {square}
               </Square>
             );
           })}
         </section>
         <TurnComponent turn={turn} />
-        <WinnerMessage winner={winner} />
+        <WinnerMessage winner={winner} resetGame={resetGame} />
       </main>
     </>
   );

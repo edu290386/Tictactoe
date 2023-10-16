@@ -1,4 +1,4 @@
 export const TURNS = {
     x: "X",
-    o: "O",
+    o: "0",
   };

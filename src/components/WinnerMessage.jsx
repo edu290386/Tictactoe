@@ -1,7 +1,9 @@
 import { Square } from "./Square";
 
-export const WinnerMessage = ({winner}) => {
-
+export const WinnerMessage = ({ winner, resetGame }) => {
+  const handleReset = () => {
+    resetGame();
+  };
 
   return (
     <>
@@ -13,7 +15,7 @@ export const WinnerMessage = ({winner}) => {
               {winner && <Square>{winner}</Square>}
             </header>
             <footer>
-              <button>Restart</button>
+              <button onClick={handleReset}>Restart</button>
             </footer>
           </div>
         </section>
